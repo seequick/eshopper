@@ -47,4 +47,28 @@ class User {
             return true;
         return false;
     }
+	  public static function checkUserData($email, $password){
+        $db = Db::getConnection();
+        $sql = 'SELECT * FROM user WHERE email = :email AND password = :password';
+        $result = $db->prepare($sql);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
+        $result->bindParam(':password', $password, PDO::PARAM_STR);
+        $result->execute();
+        $user = $result->fetch();
+        if ($user) {
+            return $user['id'];
+        }
+        return false;
+    }
+    public static function auth($id){
+		session_start();
+        $_SESSION['user'] = $id;
+    }
+    public static function checkLogged(){
+		session_start();
+        if (isset($_SESSION['user'])) {
+            return $_SESSION['user'];
+        }
+        header("Location: /user/login");
+    }
 }

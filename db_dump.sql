@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 05 2018 г., 07:17
+-- Время создания: Апр 06 2018 г., 03:48
 -- Версия сервера: 5.5.57-log
 -- Версия PHP: 7.1.7
 
@@ -128,10 +128,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `email`, `password`, `role`) VALUES
-(3, 'Александр', 'alex@mail.com', '111111', ''),
-(4, 'Дратути', 'test@gmail.com', '222222', 'admin'),
-(5, 'Серый', 'serg@mail.com', '111111', ''),
-(6, 'dasdasdsa', 'pswdghjik', 'vaska@pipka.usa', '');
+(1, 'Александр', 'alex@mail.com', '111111', ''),
+(2, 'Дратути', 'test@gmail.com', '222222', 'admin'),
+(3, 'Серый', 'serg@mail.com', '111111', ''),
+(4, 'dasdasdsa', 'vaska@pipka.usa', 'azaza', '');
 
 --
 -- Индексы сохранённых таблиц
