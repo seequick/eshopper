@@ -27,14 +27,13 @@ class UserController {
 				$errors[] = 'Этот email уже зарегистрирован'; 
 			}
 			if ($errors == false){
-				$result = User::Register($name, $password, $email);
+				$result = User::Register($name, $email, $password);
 			}
 		}
-		
 		require_once (ROOT. '/views/user/register.php');
 		return true;
 	}
-	 public function actionLogin(){
+    public function actionLogin(){
         $email = false;
         $password = false;
         
@@ -52,7 +51,6 @@ class UserController {
             }
        
             $userId = User::checkUserData($email, $password);
-			//var_dump ($userId);
             if ($userId == false) {
                 $errors[] = 'Неверный логин и/или пароль';
             } else {
@@ -62,5 +60,9 @@ class UserController {
         }
         require_once(ROOT . '/views/user/login.php');
         return true;
+    }
+    public function actionLogout(){
+        unset ($_SESSION['user']);
+        header ("Location: /");
     }
 }

@@ -1,14 +1,13 @@
 <?php
 class User {
 	 /**
-     * Регистраци¤ пользовател
+     * Регистрация пользователя
      * @param string $name имя
      * @param string $email е-mail
      * @param string $password пароль
-     * @return boolean Результат выполнени¤ метода
+     * @return boolean Результат выполнения метода
      */
-    public static function register($name, $email, $password)
-    {
+    public static function register($name, $email, $password){
         $db = Db::getConnection();
         $sql = 'INSERT INTO user (name, email, password) '
                 . 'VALUES (:name, :email, :password)';
@@ -18,7 +17,6 @@ class User {
         $result->bindParam(':password', $password, PDO::PARAM_STR);
         return $result->execute();
     }
-
     public static function checkName($name){
         if (strlen($name) >= 3) {
             return true;
@@ -47,7 +45,7 @@ class User {
             return true;
         return false;
     }
-	  public static function checkUserData($email, $password){
+    public static function checkUserData($email, $password){
         $db = Db::getConnection();
         $sql = 'SELECT * FROM user WHERE email = :email AND password = :password';
         $result = $db->prepare($sql);
@@ -61,14 +59,41 @@ class User {
         return false;
     }
     public static function auth($id){
-		session_start();
         $_SESSION['user'] = $id;
     }
     public static function checkLogged(){
-		session_start();
         if (isset($_SESSION['user'])) {
             return $_SESSION['user'];
         }
         header("Location: /user/login");
     }
-}
+    public static function isGuest(){
+        if (isset($_SESSION['user']))
+            return false;
+        return true;
+    }
+    public static function getUserById($id){
+        $id = intval($id);
+        if ($id) {
+            $db = Db::getConnection();
+            $sql = 'SELECT * FROM user WHERE id =  :id';
+            $result = $db->prepare($sql);
+            $result->bindParam(':id', $id, PDO::PARAM_INT);
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+            $result->execute();
+            return $result->fetch();
+        }
+    }
+    public static function edit($id, $name, $password){
+        $db = Db::getConnection();
+        $sql = "UPDATE user SET name = :name, password = :password WHERE user.id = :id";
+        //echo $sql;
+        //$sql = 'INSERT INTO user (name, email, password) '
+        //    . 'VALUES (:name, :email, :password)';
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':password', $password, PDO::PARAM_STR);
+        return $result->execute();
+    }
+    }

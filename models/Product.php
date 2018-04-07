@@ -14,7 +14,6 @@ class Product{
             . 'LIMIT ' . $count;
         $result = $db->query($sql);
         $i = 0;
-        //var_dump($sql);
         while ($row = $result->fetch()) {
             $productsList[$i]['id'] = $row['id'];
             $productsList[$i]['name'] = $row['name'];
@@ -46,7 +45,7 @@ class Product{
             while ($row = $result->fetch()) {
                 $products[$i]['id'] = $row['id'];
                 $products[$i]['name'] = $row['name'];
-            //    $products[$i]['image'] = $row['image'];
+                //$products[$i]['image'] = $row['image'];
                 $products[$i]['price'] = $row['price'];
                 $products[$i]['is_new'] = $row['is_new'];
                 $i++;
