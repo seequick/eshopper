@@ -28,10 +28,12 @@
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
-                                    <img src="/template/images/home/product1.jpg" alt="" />
+                                    <img src="/template/images/home/product2.jpg" alt="" />
                                     <h2><?php echo $latestProductsItem['price'];?>$</h2>
                                     <p><a href="/product/<?php echo $latestProductsItem['id'];?>"><?php echo $latestProductsItem['name'];?></p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                   <a href="/cart/add/<?php echo $latestProductsItem['id'];?>" data-id="<?php echo $latestProductsItem['id'];?>"
+                                           class="btn btn-default add-to-cart">
+                                            <i class="fa fa-shopping-cart"></i>В корзину</a>
                                     <?php if ($latestProductsItem['is_new']): ?>
                                     <img src="/template/images/home/new.png" class="new" alt="" />
                                         <?php endif; ?>

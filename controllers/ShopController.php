@@ -1,6 +1,6 @@
 <?php
 
-class CatalogController{
+class ShopController{
     public function actionIndex(){
         $categories = [];
         $categories = Category::getCategoriesList();
@@ -8,7 +8,7 @@ class CatalogController{
         $latestProducts = [];
         $latestProducts = Product::getLatestProducts(18);
 
-        require_once(ROOT . '/views/catalog/index.php');
+        require_once(ROOT . '/views/shop/index.php');
         return true;
     }
     public function actionCategory ($categoryid, $page = 1) {
@@ -22,7 +22,7 @@ class CatalogController{
 		
 		$pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT, 'page-' );
 
-        require_once(ROOT . '/views/catalog/category.php');
+        require_once(ROOT . '/views/shop/category.php');
 
         return true;
     }
