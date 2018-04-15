@@ -10,10 +10,7 @@ class CartController {
 	
 	if ($productsInCart) {
 		$productsIds = array_keys($productsInCart);
-		//$productQuantity = array_shift(array_values($productsInCart));
-		//print_r ($productsIds);
 		$products = Product::getProductByIds($productsIds);
-		//print_r ($products);
 		$totalPrice = Cart::getTotalPrice($products);
 	}
 		
@@ -25,10 +22,18 @@ public function actionAdd($id){
 	$referrer = $_SERVER['HTTP_REFERER'];
 	header ("Location: $referrer");
 }
-
-public function actionAddAjax($id){
-echo Cart::addProduct($id);
-return true;
-//fix this
+        public function actionAddAjax($id){
+        //echo Cart::addProduct($id);
+        return true;
+        //fix this
 }
+        public function actionDelete($id){
+	    Cart::deleteProduct($id);
+        header ("Location: /cart    ");
+        }
+        public function actionCheckout(){
+            echo "sss";
+            //require_once(ROOT . '/views/cart/checkout.php');
+            return true;
+        }
 }

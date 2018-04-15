@@ -15,6 +15,9 @@ Class Cart {
 	$_SESSION['products'] = $productsInCart;
 	return self::countItems();
 	}
+	public static function deleteProduct($id){
+	   unset ($_SESSION['products'][$id]);
+    }
 	public static function countItems(){
 		if (isset($_SESSION['products'])) {
 		$count = 0;
@@ -26,10 +29,9 @@ Class Cart {
 		return 0;
 	}
 	public static function getProducts(){
-		if (isset($_SESSION['products'])) {
+		if (isset($_SESSION['products']))
 				return $_SESSION['products'];
 				return false;
-	}
 	}
 	public static function getTotalPrice($products){
 		$productsInCart = self::getProducts();

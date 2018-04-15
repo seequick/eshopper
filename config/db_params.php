@@ -1,7 +1,7 @@
 <?php
 return array(
 			'host' => 'localhost',
-			'dbname' => 'fml',
+			'dbname' => 'eshopper.loc',
 			'user' => 'root',
-			'password' => '',
+			'password' => '123',
 );
