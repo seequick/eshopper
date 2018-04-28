@@ -43,4 +43,7 @@ Class Cart {
 		}
 		return $total;
 	}
+	public static function clear(){
+        unset ($_SESSION['products']);
+    }
 }
