@@ -1,6 +1,7 @@
 <?php
 class Product{
     const SHOW_BY_DEFAULT = 1;
+    const SHOW_BY_RECOMMENDED = 3;
     /**
      * Returns an array of products
      */
@@ -24,6 +25,25 @@ class Product{
         }
         return $productsList;
     }
+    public  static function getRecommendedProducts($count = self::SHOW_BY_RECOMMENDED){
+        $db = Db::getConnection();
+        $recommendedList = [];
+        $sql = 'SELECT id, name, price, is_new FROM product '
+            .  'WHERE status = 1 AND is_recommended = 1 '
+            .  'ORDER BY id DESC '
+            .  'LIMIT ' . $count;
+        $result = $db->query($sql);
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $recommendedList[$i]['id'] = $row['id'];
+            $recommendedList[$i]['name'] = $row['name'];
+            $recommendedList[$i]['price'] = $row['price'];
+            $recommendedList[$i]['is_new'] = $row['is_new'];
+            $i++;
+        }
+        return $recommendedList;
+        }
+
     /**
      * Returns an array of products
      */
@@ -85,7 +105,7 @@ class Product{
             } 
 			return $products;
 	}
-	 public static function getTotalProductsInCategory($categoryId){
+	public static function getTotalProductsInCategory($categoryId){
         $db = Db::getConnection();
         $sql = 'SELECT count(id) AS count FROM product WHERE status="1" AND category_id = :category_id';
         $result = $db->prepare($sql);

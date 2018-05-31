@@ -9,20 +9,17 @@ class CartController{
         $referrer = $_SERVER['HTTP_REFERER'];
         header("Location: $referrer");
     }
-
     public function actionDelete($id){
         Cart::deleteProduct($id);
         // Возвращаем пользователя на страницу
         header("Location: /cart/");
     }
-
     public function actionAddAjax($id){
         // Добавляем товар в корзину, ajax
         //echo Cart::addProduct($id);
         // fix this
         return true;
     }
-
     public function actionIndex(){
         $categories = array();
         $categories = Category::getCategoriesList();
@@ -44,17 +41,13 @@ class CartController{
         require_once(ROOT . '/views/cart/index.php');
         return true;
     }
-
     public function actionCheckout(){
-
         // Список категорий для левого меню
         $categories = array();
         $categories = Category::getCategoriesList();
 
-
         // Статус успешного оформления заказа
         $result = false;
-
 
         // Форма отправлена?
         if (isset($_POST['submit'])) {
@@ -80,12 +73,11 @@ class CartController{
                 } else {
                     $userId = User::checkLogged();
                 }
-                //echo $userId;
                 // Сохраняем заказ в БД
                 $result = Order::save($userName, $userPhone, $userComment, $userId, $productsInCart);
 
                 if ($result) {
-                    // Оповещаем администратора о новом заказе, нет смысла
+                    // Оповещаем администратора о новом заказе, нет работает на localhost
                     // $adminEmail = '';
                     // $message = '';
                     // $subject = 'Новый заказ!';
@@ -121,7 +113,6 @@ class CartController{
                 $totalPrice = Cart::getTotalPrice($products);
                 $totalQuantity = Cart::countItems();
 
-
                 $userName = false;
                 $userPhone = false;
                 $userComment = false;
@@ -137,9 +128,7 @@ class CartController{
                 }
             }
         }
-
         require_once(ROOT . '/views/cart/checkout.php');
         return true;
     }
-
 }
