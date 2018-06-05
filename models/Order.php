@@ -1,13 +1,17 @@
 <?php
-
+/**
+ * Класс Order - модель для работы с заказами
+ */
 class Order{
 
     /**
      * Сохранение заказа
-     * @param type $name
-     * @param type $email
-     * @param type $password
-     * @return type
+     * @param string $userName Имя
+     * @param string $userPhone Телефон
+     * @param string $userComment Комментарий
+     * @param integer $userId id пользователя
+     * @param array $products Массив с товарами
+     * @return boolean Результат выполнения метода
      */
     public static function save($userName, $userPhone, $userComment, $userId, $products){
         $products = json_encode($products);

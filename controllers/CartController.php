@@ -1,49 +1,62 @@
 <?php
 
 class CartController{
+    /**
+     * Action для добавления товара в корзину синхронным запросом
+     * @param integer $id - id товара
+     */
     public function actionAdd($id){
         // Добавляем товар в корзину
         Cart::addProduct($id);
 
-        // Возвращаем пользователя на страницу
+        // Возвращаем пользователя на страницу с которой он пришел
         $referrer = $_SERVER['HTTP_REFERER'];
         header("Location: $referrer");
     }
     public function actionDelete($id){
+        // Удаляем заданный товар из корзины
         Cart::deleteProduct($id);
-        // Возвращаем пользователя на страницу
+        // Возвращаем пользователя в корзину
         header("Location: /cart/");
     }
-    public function actionAddAjax($id){
+    //public function actionAddAjax($id){ не работает, route так же выключен
         // Добавляем товар в корзину, ajax
         //echo Cart::addProduct($id);
         // fix this
-        return true;
-    }
+       // return true;
+    //}
+
+    /**
+     * Action для страницы "Корзина"
+     */
     public function actionIndex(){
-        $categories = array();
+        // Список категорий для левого меню
         $categories = Category::getCategoriesList();
 
-        $productsInCart = false;
-
-        // Получим данные из корзины
+        // Получим идентификаторы и количество товаров в корзине
         $productsInCart = Cart::getProducts();
 
         if ($productsInCart) {
-            // Получаем полную информацию о товарах для списка
+            // Если в корзине есть товары, получаем полную информацию о товарах для списка
+            // Получаем массив только с идентификаторами товаров
             $productsIds = array_keys($productsInCart);
+
+            // Получаем массив с полной информацией о необходимых товарах
             $products = Product::getProductByIds($productsIds);
 
             // Получаем общую стоимость товаров
             $totalPrice = Cart::getTotalPrice($products);
         }
 
+        // Подключаем вид
         require_once(ROOT . '/views/cart/index.php');
         return true;
     }
+    /**
+     * Action для страницы "Оформление покупки"
+     */
     public function actionCheckout(){
         // Список категорий для левого меню
-        $categories = array();
         $categories = Category::getCategoriesList();
 
         // Статус успешного оформления заказа
@@ -77,7 +90,7 @@ class CartController{
                 $result = Order::save($userName, $userPhone, $userComment, $userId, $productsInCart);
 
                 if ($result) {
-                    // Оповещаем администратора о новом заказе, нет работает на localhost
+                    // Оповещаем администратора о новом заказе, не работает на localhost
                     // $adminEmail = '';
                     // $message = '';
                     // $subject = 'Новый заказ!';
@@ -128,6 +141,7 @@ class CartController{
                 }
             }
         }
+
         require_once(ROOT . '/views/cart/checkout.php');
         return true;
     }
