@@ -30,7 +30,8 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <img src="/template/images/home/product1.jpg" alt="" />
+                                            <img src="<?php echo Product::getImage($product['id']); ?>" width="200px" alt="" />
+
                                             <h2><?php echo $product['price'];?>$</h2>
                                             <p><a href="/product/<?php echo $product['id'];?>"><?php echo $product['name'];?></p>
                                             <a href="/cart/add/<?php echo $product['id'];?>" data-id="<?php echo $product['id'];?>"

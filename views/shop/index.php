@@ -28,7 +28,7 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <img src="/template/images/home/product1.jpg" alt="" />
+                                            <img src="<?php echo Product::getImage($latestProductsItem['id']); ?>" width="200px" alt="" />
                                             <h2>$<?php echo $latestProductsItem['price'];?></h2>
                                         <p>
                                             <a href="/product/<?php echo $latestProductsItem['id'];?>">

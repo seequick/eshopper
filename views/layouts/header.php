@@ -32,8 +32,8 @@
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> +38 123456789</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> test.aa@gmail.com</a></li>
+                            <li><a href="#"><i class="fa fa-phone"></i> +911</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> test@loc.home</a></li>
                         </ul>
                     </div>
                 </div>
@@ -98,7 +98,6 @@
                                     <li><a href="/cart/">Корзина</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/blog/">Блог</a></li>
                             <li><a href="/about/">О магазине</a></li>
                             <li><a href="/contacts/">Контакты</a></li>
                         </ul>

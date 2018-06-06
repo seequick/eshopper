@@ -104,7 +104,6 @@ class Product{
             while ($row = $result->fetch()) {
                 $products[$i]['id'] = $row['id'];
                 $products[$i]['name'] = $row['name'];
-                //$products[$i]['image'] = $row['image'];
                 $products[$i]['price'] = $row['price'];
                 $products[$i]['is_new'] = $row['is_new'];
                 $i++;
@@ -325,5 +324,27 @@ class Product{
         $result->bindParam(':is_recommended', $options['is_recommended'], PDO::PARAM_INT);
         $result->bindParam(':status', $options['status'], PDO::PARAM_INT);
         return $result->execute();
+    }
+
+    /**
+     * Возвращает путь к изображению
+     * @param integer $id
+     * @return string <p>Путь к изображению</p>
+     */
+    public static function getImage($id)
+    {
+        // Название изображения-пустышки
+        $noImage = 'no-image.jpg';
+        // Путь к папке с товарами
+        $path = '/upload/images/products/';
+        // Путь к изображению товара
+        $pathToProductImage = $path . $id . '.jpg';
+        if (file_exists($_SERVER['DOCUMENT_ROOT'].$pathToProductImage)) {
+            // Если изображение для товара существует
+            // Возвращаем путь изображения товара
+            return $pathToProductImage;
+        }
+        // Возвращаем путь изображения-пустышки
+        return $path . $noImage;
     }
 }

@@ -40,7 +40,6 @@ class AdminProductController extends AdminBase{
             $options['price'] = $_POST['price'];
             $options['category_id'] = $_POST['category_id'];
             $options['brand'] = $_POST['brand'];
-            //$options['image'] = $_POST['image'];
             $options['description'] = $_POST['description'];
             $options['is_new'] = $_POST['is_new'];
             $options['availability'] = $_POST['availability'];
@@ -57,9 +56,14 @@ class AdminProductController extends AdminBase{
             if ($errors == false) {
                 $id = Product::createProduct($options);
 
+                // Если запись добавлена
                 if ($id)
                 {
-                    // Проверим загрузилось ли через форму изображение
+                    // Проверим, загружалось ли через форму изображение
+                    if (is_uploaded_file($_FILES["image"]["tmp_name"])) {
+                        // Если загружалось, переместим его в нужную папку, дадим новое имя
+                        move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$id}.jpg");
+                    }
                 }
             }
         header ("Location: /admin/product");
@@ -94,8 +98,11 @@ class AdminProductController extends AdminBase{
             $options['is_recommended'] = $_POST['is_recommended'];
             $options['status'] = $_POST['status'];
             if (Product::updateProductById($id, $options)) {
-                // image check
-
+                // Проверим, загружалось ли через форму изображение
+                if (is_uploaded_file($_FILES["image"]["tmp_name"])) {
+                    // Если загружалось, переместим его в нужную папку, дадим новое имя
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$id}.jpg");
+                }
             }
             header ("Location: /admin/product");
 

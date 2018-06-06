@@ -670,7 +670,7 @@ ul.sub-menu {
 }
 
 .category-products {
-  border: 1px solid #F7F7F0;
+  border: 1px solid #e6e6e6;
   margin-bottom: 35px;
   padding-bottom: 20px;
   padding-top: 15px;
@@ -866,10 +866,10 @@ h2.title {
 }
 
 .product-image-wrapper{
-  border:1px solid #F7F7F5;
+  border:1px solid #e6e6e6;
   overflow: hidden;
   margin-bottom:30px;
-  height: 380px;
+  /*height: 380px;*/
 }
 
 .single-products {
