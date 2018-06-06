@@ -13,10 +13,9 @@
     <link href="/template/css/animate.css" rel="stylesheet">
     <link href="/template/css/main.css" rel="stylesheet">
     <link href="/template/css/responsive.css" rel="stylesheet">
-
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="template/js/html5shiv.js"></script>
+    <script src="template/js/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="/template/images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/template/images/ico/apple-touch-icon-144-precomposed.png">
@@ -40,10 +39,13 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="social-icons pull-right">
-                            <ul class="nav navbar-nav">
-                                <li><a href="/"><i class="fa fa-sign-out"></i>На сайт</a></li>
-                            </ul>
+                        <div class="pull-right">
+<!--                            <ul class="nav navbar-nav">-->
+                            <h5>
+                                <a href="/"><i class="fa fa-sign-in"></i> На сайт</a> |
+                                <a href="/user/logout"><i class="fa fa-sign-out"></i> Выйти</a>
+                            </h5>
+<!--                            </ul>-->
                         </div>
                     </div>
                 </div>

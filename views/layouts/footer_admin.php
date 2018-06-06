@@ -5,8 +5,8 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left">Copyright © 2015</p>
-                <p class="pull-right">Курс PHP Start</p>
+                <p class="pull-left">Copyright © <strong><?php echo date("d.m.Y"); ?></strong></p>
+                <p class="pull-right">Made by me</p>
             </div>
         </div>
     </div>
@@ -22,6 +22,11 @@
 <script src="/template/js/price-range.js"></script>
 <script src="/template/js/jquery.prettyPhoto.js"></script>
 <script src="/template/js/main.js"></script>
+<script>
+    function change(){
+        document.getElementById("myform").submit();
+    }
+</script>
 <!--<script>-->
 <!--    $(document).ready(function(){-->
 <!--        $(".add-to-cart").click(function () {-->

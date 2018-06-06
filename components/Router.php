@@ -14,9 +14,9 @@ class Router{
         $uri = $this->getURI();
         foreach ($this->routes as $uriPattern => $path) {
             if(preg_match("~$uriPattern~", $uri)) {
-             // echo "Где ищем (запрос, который набрал пользователь): ".$uri;
-               //  echo "<br>Что ищем (совпадение из правила): ".$uriPattern;
-               //   echo "<br>Кто обрабатывает: ".$path;
+             //echo "Где ищем (запрос, который набрал пользователь): ".$uri;
+              // echo "<br>Что ищем (совпадение из правила): ".$uriPattern;
+              // echo "<br>Кто обрабатывает: ".$path;
                 //Получаем внутренний путь из внешнего согласно правилу.
                 $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
               //echo '<br>Нужно сформулировать: '.$internalRoute.'<br>';

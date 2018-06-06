@@ -37,7 +37,7 @@
                                            class="btn btn-default add-to-cart">
                                             <i class="fa fa-shopping-cart"></i>В корзину</a>
                                             <?php if ($product['is_new']): ?>
-                                                <img src="/template/images/home/new.png" class="new" alt="" />
+                                                <img src="/template/images/home/new.png" class="new" alt="" style="width: 20%; "/>
                                             <?php endif; ?>
                                         </div>
                                     </div>

@@ -24,7 +24,7 @@
                 <div class="features_items"><!--features_items-->
                     <h2 class="title text-center">Последние товары</h2>
                     <?php foreach ($latestProducts as $latestProductsItem): ?>
-                    <div class="col-sm-4">
+                        <div class="col-sm-4">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
@@ -35,7 +35,7 @@
                                            class="btn btn-default add-to-cart">
                                             <i class="fa fa-shopping-cart"></i>В корзину</a>
                                     <?php if ($latestProductsItem['is_new']): ?>
-                                    <img src="/template/images/home/new.png" class="new" alt="" />
+                                    <img src="/template/images/home/new.png" class="new" alt="" style="width: 20%;"/>
                                         <?php endif; ?>
                                 </div>
                             </div>
@@ -54,13 +54,14 @@
                          data-cycle-fx=carousel
                          data-cycle-timeout=5000
                          data-cycle-carousel-visible=2
-                         data-cycle-carousel-fluid=false
+                         data-cycle-carousel-fluid=true
                          data-cycle-slides="div.item"
                          data-cycle-prev="#prev"
                          data-cycle-next="#next"
                     >
                         <?php foreach ($recommended as $sliderItem): ?>
-                            <div class="item">
+                        <div class="item">
+<!--                            <div class="col-sm-6">-->
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
@@ -73,13 +74,14 @@
                                             <a href="/cart/add/<?php echo $sliderItem['id'];?>" class="btn btn-default add-to-cart" data-id="<?php echo $sliderItem['id']; ?>"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                         </div>
                                         <?php if ($sliderItem['is_new']): ?>
-                                            <img src="/template/images/home/new.png" class="new" alt="" />
+                                            <img src="/template/images/home/new.png" class="new" alt="" style="width: 15%;"/>
                                         <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
+<!--                    </div>-->
                         <?php endforeach; ?>
-                    </div>
+
 
                     <a class="left recommended-item-control" id="prev" href="#recommended-item-carousel" data-slide="prev">
                         <i class="fa fa-angle-left"></i>

@@ -26,16 +26,18 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img src="/template/images/product-details/1.jpg" alt="" />
+                                <img src="/template/images/home/product5.jpg" alt="" />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="product-information"><!--/product-information-->
+                                <?php if ($products['is_new']): ?>
                                 <img src="/template/images/product-details/new.jpg" class="newarrival" alt="" />
+                                <?php endif; ?>
                                 <h2><?php echo $products['name']; ?></h2>
                                 <p>Код товара: <?php echo $products['code']; ?></p>
                                 <span>
-                                            <span>US $<?php echo $products['price']; ?></span>
+                                            <span><?php echo $products['price']; ?>$</span>
                                             <label>Количество:</label>
                                             <input type="text" value="1" />
                                             <button type="button" class="btn btn-fefault cart">
@@ -43,8 +45,8 @@
                                                 В корзину
                                             </button>
                                         </span>
-                                <p><b>Наличие:</b> На складе</p>
-                                <p><b>Состояние:</b> Новое</p>
+                                <p><b>Наличие:</b> <?php if ($products['availability'] == 1) echo "Есть на складе"; else echo "Нет на складе"; ?></p>
+<!--                                 --><?php //if ($products['is_new'] == 1) echo "<p style='color:red; '><b>Новинка</b></p>"; else echo ""; ?>
                                 <p><b>Производитель:</b> <?php echo $products['brand']; ?></p>
                             </div><!--/product-information-->
                         </div>
