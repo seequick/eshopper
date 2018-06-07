@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img src="<?php echo Product::getImage($categoryItem['id']); ?>" width="200px" alt="" />
+                                <img src="<?php echo Product::getImage($products['id']); ?>" width="200px" alt="" />
                             </div>
                         </div>
                         <div class="col-sm-7">
@@ -40,11 +40,15 @@
                                             <span><?php echo $products['price']; ?>$</span>
                                             <label>Количество:</label>
                                             <input type="text" value="1" />
-                                            <button type="button" class="btn btn-fefault cart">
-                                                <i class="fa fa-shopping-cart"></i>
-                                                В корзину
-                                            </button>
+                                           <a href="/cart/add/<?php echo $products['id'];?>" data-id="<?php echo $products['id'];?>" style="position:relative; top:63px; right:181px;"
+                                              class="btn btn-default add-to-cart">
+                                            <i class="fa fa-shopping-cart"></i>В корзину</a>
                                         </span>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+
                                 <p><b>Наличие:</b> <?php if ($products['availability'] == 1) echo "Есть на складе"; else echo "Нет на складе"; ?></p>
 <!--                                 --><?php //if ($products['is_new'] == 1) echo "<p style='color:red; '><b>Новинка</b></p>"; else echo ""; ?>
                                 <p><b>Производитель:</b> <?php echo $products['brand']; ?></p>
